@@ -1,0 +1,11 @@
+{
+  "name": "jquery",
+  "license": "LGPL",
+  "tags": ["html","js"],
+  "description": "Fixed version of the haxe's jQuery class and some plugins.",
+  "contributors": ["yar3333"],
+  "releasenote": "Init jQuery.v.1.9.1.",
+  "version": "1.0.0",
+  "url": "https://bitbucket.org/yar3333/haxe-jquery",
+  "dependencies": {}
+}
