@@ -26,62 +26,46 @@ class Draggable
 		}
 	}
 	
-	public static inline function draggable(jq:js.JQuery, configuration: {
+	public static inline function draggable(jq:js.JQuery, options:
+	{
 		cancel : String /*=":input,option"*/,
 		revert : Dynamic /*=false*/, 
 		containment : Dynamic /*=false*/,
 		helper : Dynamic /*="original"*/,
 		cursor : String /*="auto"*/
-	}) : js.JQuery untyped 
+	}
+	) : js.JQuery untyped 
 	{
-		return jq.draggable(configuration);
+		return jq.draggable(options);
 	}
 	
 	/**
 	 * Remove the draggable functionality completely. This will return the element back to its pre-init state.
 	 */
-	public static inline function draggableDestroy(jq:js.JQuery) : js.JQuery untyped 
-	{
-		return jq.draggable("destroy");
-	}
+	public static inline function draggableDestroy(jq:js.JQuery) : js.JQuery untyped return jq.draggable("destroy");
 	
 	/**
 	 * Disable the draggable.
 	 */
-	public static inline function draggableDisable(jq:js.JQuery) : js.JQuery untyped 
-	{
-		return jq.draggable("disable");
-	}
+	public static inline function draggableDisable(jq:js.JQuery) : js.JQuery untyped return jq.draggable("disable");
 	
 	/**
 	 * Enable the draggable.
 	 */
-	public static inline function draggableEnable(jq:js.JQuery) : js.JQuery untyped 
-	{
-		return jq.draggable("enable");
-	}
+	public static inline function draggableEnable(jq:js.JQuery) : js.JQuery untyped return jq.draggable("enable");
 	
 	/**
 	 * Get any draggable option
 	 */
-	public static inline function draggableOptionGet(jq:js.JQuery, optionName:String) : Dynamic untyped
-	{
-		return jq.draggable("option", optionName);
-	}
+	public static inline function draggableOptionGet(jq:js.JQuery, optionName:String) : Dynamic untyped return jq.draggable("option", optionName);
 	
 	/**
 	 * Set any draggable option
 	 */
-	public static inline function draggableOptionSet(jq:js.JQuery, optionName:String, value:Dynamic) : js.JQuery untyped
-	{
-		return jq.draggable("option", optionName, value);
-	}
+	public static inline function draggableOptionSet(jq:js.JQuery, optionName:String, value:Dynamic) : js.JQuery untyped return jq.draggable("option", optionName, value);
 	
 	/**
 	 * Returns the .ui-draggable element.
 	 */
-	public static inline function draggableWidget(jq:js.JQuery) : js.JQuery untyped
-	{
-		return jq.draggable("widget");
-	}
+	public static inline function draggableWidget(jq:js.JQuery) : js.JQuery untyped return jq.draggable("widget");
 }
