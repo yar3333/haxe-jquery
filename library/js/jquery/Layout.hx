@@ -1,7 +1,5 @@
 package js.jquery;
 
-import js.jquery.ui.Draggable;
-
 ////////////////////////////////////////////////////////////
 //
 // See "http://layout.jquery-dev.net/" for details.
