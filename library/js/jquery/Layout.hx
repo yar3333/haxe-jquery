@@ -178,6 +178,6 @@ class Layout
 	}
 	) : LayoutInstance untyped
 	{
-		return params != null ? jq.layout(params) : jq.layout();
+		return jq.layout(params);
 	}
 }
