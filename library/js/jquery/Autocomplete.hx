@@ -64,7 +64,7 @@ typedef AutocompleteOptions =
 	/**
 	 * String or RegExp, that splits input value and takes last part to as query for suggestions. Useful when for example you need to fill list of coma separated values.
 	 */
-	@:optional var delimiter : String: 
+	@:optional var delimiter : Dynamic;
 	
 	/**
 	 * 'z-index' for suggestions container. Default: 9999.
@@ -127,35 +127,43 @@ typedef AutocompleteOptions =
 
 typedef AutocompleteInstance =
 {
+	var visible : Bool;
+	
+	var disabled : Bool;
+	
+	var selectedIndex(default, null) : Int;
+	
 	/**
 	 * Clears suggestion cache and current suggestions suggestions.
 	 */
-	function clear();
+	function clear() : Void;
 	
 	/**
 	 * Clears suggestion cache.
 	 */
-	function clearCache();
+	function clearCache() : Void;
 	
 	/**
 	 * Deactivate autocomplete.
 	 */
-	function disable();
+	function disable() : Void;
 	
 	/**
 	 * Activates autocomplete if it was deactivated before.
 	 */	
-	function enable();
+	function enable() : Void;
 	
 	/**
 	 * Hides suggestions.
 	 */
-	function hide();
+	function hide() : Void;
 	
 	/**
 	 * Destroys autocomplete instance. All events are detached and suggestion containers removed.
 	 */
-	function dispose();
+	function dispose() : Void;
+	
+	function setOptions(options:AutocompleteOptions) : Void;
 }
 
 
