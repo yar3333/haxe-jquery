@@ -168,7 +168,7 @@ typedef AutocompleteInstance =
 	/**
 	 * Show suggestions.
 	 */
-	function suggest() : Void;
+	function onValueChange() : Void;
 }
 
 class Autocomplete
