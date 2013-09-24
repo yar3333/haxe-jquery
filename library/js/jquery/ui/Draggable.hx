@@ -5,6 +5,13 @@ package js.jquery.ui;
 	http://jqueryui.com/demos/draggable/
 **/
 
+typedef DraggableUI = 
+{
+	var helper : js.JQuery;
+	var position : { top:Int, left:Int };
+	var offset: { top:Int, left:Int };
+}
+
 class Draggable
 {
 	static var isInited = false;
@@ -28,11 +35,39 @@ class Draggable
 	
 	public static inline function draggable(jq:js.JQuery, ?options:
 	{
-		?cancel : String /*=":input,option"*/,
-		?revert : Dynamic /*=false*/, 
-		?containment : Dynamic /*=false*/,
-		?helper : Dynamic /*="original"*/,
-		?cursor : String /*="auto"*/
+		  ?addClasses : Bool
+		, ?appendTo : Dynamic
+		, ?axis : Dynamic // false, "x", "y"
+		, ?cancel : String // ":input,option"
+		, ?connectToSortable : String
+		, ?containment : Dynamic // false, Selector or Element or String or Array
+		, ?cursor : String // "auto"
+		, ?cursorAt : { ?top:Int, ?left:Int, ?right:Int, ?bottom:Int }
+		, ?delay : Int
+		, ?disabled : Bool
+		, ?distance : Int
+		, ?grid : Dynamic // false, [x, y]
+		, ?handle : Dynamic // false, Selector or Element
+		, ?helper : Dynamic // "original", String or Function
+		, ?iframeFix : Dynamic // false, Selector
+		, ?opacity : Dynamic // false, Float
+		, ?refreshPositions : Bool
+		, ?revert : Dynamic // false, Boolean or String or Function()
+		, ?revertDuration : Int
+		, ?scope : String // "default"
+		, ?scroll : Bool
+		, ?scrollSensitivity : Int
+		, ?scrollSpeed : Int
+		, ?snap : Dynamic // false, Boolean or Selector
+		, ?snapMode : String // "both"
+		, ?snapTolerance : Int
+		, ?stack : Dynamic // false, Selector
+		, ?zIndex : Dynamic // false, Int
+				
+		, ?create: js.JQuery.JqEvent->DraggableUI->Void
+		, ?drag: js.JQuery.JqEvent->DraggableUI->Void
+		, ?start: js.JQuery.JqEvent->DraggableUI->Void
+		, ?stop: js.JQuery.JqEvent->DraggableUI->Void
 	}
 	) : js.JQuery untyped 
 	{
