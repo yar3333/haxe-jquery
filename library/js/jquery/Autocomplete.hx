@@ -134,7 +134,7 @@ typedef AutocompleteInstance =
 	var selectedIndex(default, null) : Int;
 	
 	/**
-	 * Clears suggestion cache and current suggestions suggestions.
+	 * Clears suggestion cache and current suggestions.
 	 */
 	function clear() : Void;
 	
@@ -164,8 +164,12 @@ typedef AutocompleteInstance =
 	function dispose() : Void;
 	
 	function setOptions(options:AutocompleteOptions) : Void;
+	
+	/**
+	 * Show suggestions.
+	 */
+	function suggest() : Void;
 }
-
 
 class Autocomplete
 {
@@ -174,8 +178,9 @@ class Autocomplete
 		haxe.macro.Compiler.includeFile("js/jquery/Autocomplete.js");
 	}
 	
-	public static inline function autocomplete(jq:js.JQuery, ?params : AutocompleteOptions) : AutocompleteInstance untyped
+	public static function autocomplete(jq:js.JQuery, ?params:AutocompleteOptions) : AutocompleteInstance untyped
 	{
-		return jq.autocomplete(params);
+		jq.autocomplete(params);
+		return jq.autocomplete();
 	}
 }
