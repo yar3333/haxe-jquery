@@ -5,6 +5,14 @@ package js.jquery.ui;
 	http://jqueryui.com/demos/droppable/
 **/
 
+typedef DroppableUI = 
+{
+	var draggable : js.JQuery;
+	var helper : js.JQuery;
+	var position : { top:Int, left:Int };
+	var offset: { top:Int, left:Int };
+}
+
 class Droppable
 {
 	static var isInited = false;
@@ -27,13 +35,21 @@ class Droppable
 		}
 	}
 	
-	public static inline function droppable(jq:js.JQuery, configuration: {
-        accept : Dynamic /*="*"*/,
-		activeClass : String /*=false*/,
-		drop : js.JQuery.JqEvent -> { draggable : js.JQuery } -> Void /*=null*/
-	}) : js.JQuery untyped 
+	public static inline function droppable(jq:js.JQuery, ?options:
 	{
-		return jq.droppable(configuration);
+          ?accept : Dynamic // "*"
+		, ?activeClass : String // false
+		
+		, ?activate : js.JQuery.JqEvent->DroppableUI->Void
+		, ?create : js.JQuery.JqEvent->DroppableUI->Void
+		, ?deactivate : js.JQuery.JqEvent->DroppableUI->Void
+		, ?drop : js.JQuery.JqEvent->DroppableUI->Void
+		, ?out : js.JQuery.JqEvent->DroppableUI->Void
+		, ?over : js.JQuery.JqEvent->DroppableUI->Void
+	}
+	) : js.JQuery untyped 
+	{
+		return jq.droppable(options);
 	}
 	
 	/**
