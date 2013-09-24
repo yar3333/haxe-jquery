@@ -26,13 +26,13 @@ class Draggable
 		}
 	}
 	
-	public static inline function draggable(jq:js.JQuery, options:
+	public static inline function draggable(jq:js.JQuery, ?options:
 	{
-		cancel : String /*=":input,option"*/,
-		revert : Dynamic /*=false*/, 
-		containment : Dynamic /*=false*/,
-		helper : Dynamic /*="original"*/,
-		cursor : String /*="auto"*/
+		?cancel : String /*=":input,option"*/,
+		?revert : Dynamic /*=false*/, 
+		?containment : Dynamic /*=false*/,
+		?helper : Dynamic /*="original"*/,
+		?cursor : String /*="auto"*/
 	}
 	) : js.JQuery untyped 
 	{
