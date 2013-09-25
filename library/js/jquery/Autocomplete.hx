@@ -93,6 +93,8 @@ typedef AutocompleteOptions =
 	 */
 	@:optional var onSearchComplete : String->Void;
 	
+	@:optional var containerClass : String;
+	
 	/**
 	 * Default false. Set to true to leave the cursor in the input field after the user tabs to select a suggestion.
 	 */
