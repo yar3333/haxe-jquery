@@ -59,7 +59,7 @@ typedef AutocompleteOptions =
 	 * Custom function to format suggestion entry inside suggestions container, optional.
 	 * function (suggestion, currentValue) {} 
 	 */
-	@:optional var formatResult : AutocompleteSuggestion->String->Void;
+	@:optional var formatResult : AutocompleteSuggestion->String->String;
 	
 	/**
 	 * String or RegExp, that splits input value and takes last part to as query for suggestions. Useful when for example you need to fill list of coma separated values.
