@@ -2,9 +2,9 @@
   "name": "jquery",
   "license": "LGPL",
   "tags": ["html","js"],
-  "description": "Upgrade autocomplete plugin.",
+  "description": "Fixed version of the haxe's jQuery class and some plugins.",
   "contributors": ["yar3333"],
-  "releasenote": "Init jQuery.v.1.9.1.",
+  "releasenote": "Upgrade autocomplete plugin.",
   "version": "1.1.0",
   "url": "https://bitbucket.org/yar3333/haxe-jquery",
   "dependencies": {}
