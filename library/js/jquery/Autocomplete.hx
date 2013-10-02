@@ -177,6 +177,7 @@ class Autocomplete
 {
 	static function __init__() : Void
 	{
+		var define = null; // prevent load as amd module
 		haxe.macro.Compiler.includeFile("js/jquery/Autocomplete.js");
 	}
 	
