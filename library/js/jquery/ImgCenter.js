@@ -2,8 +2,8 @@
 	$.fn.imgCenter = function(options)
 	{
 		var defaults = {  
-		  	parentSteps: 0,
-		  	scaleToFit: true,
+		  	mode: "fit", // fit, fill, noscale
+		  	parentPrecedence: 0,
 		  	complete: function(){},
 		  	start: function(){},
 		  	end: function(){}
@@ -12,86 +12,77 @@
 	 	
 		opts.start.call(this);
 		
-		// Get total number of items.
-		var len = this.length - 1;
+		var maxIndex = this.length - 1;
 		
-		return this.each(function(i){
-			var current = i;
+		return this.each(function(current) {
 			
-			// Declare the current Image as a variable.
-			var org_image = $(this);
+			var $img = $(this);
 			
-			org_image.hide();
+			$img.hide();
 			
-			// Move up Parents until the spcified limit has been met.
-			var theParent = org_image;
-			for (var i=0; i <= opts.parentSteps; i++){
-				theParent = theParent.parent();
+			var $parent = $img;
+			for (var i=0; i<=opts.parentPrecedence; i++)
+			{
+				$parent = $parent.parent();
 			}			
-			var parWidth = parseInt(theParent.width());
-			var parHeight = parseInt(theParent.height());
-			var parAspect = parWidth / parHeight;
-
-			if(org_image[0].complete){
-				imgMath(org_image);
-			} else {
-				var loadWatch = setInterval(watch, 500);
-			}
 			
-			function watch()
+			var parWidth = parseInt($parent.width());
+			var parHeight = parseInt($parent.height());
+
+			if ($img[0].complete)
 			{
-				if (org_image[0].complete)
-				{
-					clearInterval(loadWatch);
-					imgMath(org_image);
-				}
+				imgMath($img);
+			}
+			else
+			{
+				$img.load(function(e) { imgMath($img); });
 			}
 
-			function imgMath(org_image)
+			function imgMath($img)
 			{
-				org_image.show();
-                
-                // Get image properties.		
-				var imgWidth = org_image.width();
-				var imgHeight = org_image.height();
-	
-				// Center the image.
-				theParent.css("overflow","hidden");
+				$parent.css("overflow","hidden");
 				
-				if (opts.scaleToFit)
+				$img.show();
+                
+				var imgWidth = $img.width();
+				var imgHeight = $img.height();
+				
+				if (opts.mode == "fit" || opts.mode == "fill")
 				{
-					var k = Math.min(parWidth / imgWidth, parHeight / imgHeight);
+					var k = opts.mode == "fit" 
+						? Math.min(parWidth / imgWidth, parHeight / imgHeight)
+						: Math.max(parWidth / imgWidth, parHeight / imgHeight);
 					
-					org_image.width(Math.round(imgWidth*k));
-					org_image.height(Math.round(imgHeight*k));
+					$img.width(Math.round(imgWidth * k));
+					$img.height(Math.round(imgHeight * k));
 					
-					org_image.css("margin-left", Math.round((parWidth - org_image.width()) / 2) + "px");
-					org_image.css("margin-top", Math.round((parHeight - org_image.height()) / 2) + "px");
-				} 
+					$img.css("margin-left", Math.round((parWidth - $img.width()) / 2) + "px");
+					$img.css("margin-top", Math.round((parHeight - $img.height()) / 2) + "px");
+				}
 				else
 				{
 					if (imgWidth > parWidth)
 					{
-						org_image.css({"margin-left":"-"+ Math.round((imgWidth - parWidth) / 2) + "px"});
+						$img.css({"margin-left":"-"+ Math.round((imgWidth - parWidth) / 2) + "px"});
 					} 
 					else if (imgWidth < parWidth)
 					{
-						org_image.css("margin-left", Math.round((parWidth -imgWidth) / 2) + "px");
+						$img.css("margin-left", Math.round((parWidth -imgWidth) / 2) + "px");
 					}
 					
 					if (imgHeight > parHeight)
 					{
-						org_image.css("margin-top", "-" + Math.round((imgHeight - parHeight) / 2) + "px");
+						$img.css("margin-top", "-" + Math.round((imgHeight - parHeight) / 2) + "px");
 					}
 					else if (imgHeight < parHeight && opts.centerVertical)
 					{
-						org_image.css("margin-top", Math.round((parHeight - imgHeight) / 2) + "px");
+						$img.css("margin-top", Math.round((parHeight - imgHeight) / 2) + "px");
 					}
 				}
 				
 				opts.complete.call(this);
 				
-				if(current == len)
+				if (current == maxIndex)
 				{
 					opts.end.call(this);
 				}
