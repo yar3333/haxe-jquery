@@ -8,12 +8,12 @@ class ImgCenter
 	}
 	
 	public static inline function imgCenter(jq:js.JQuery, ?params : { 
-		parentSteps : Int /*=0*/,
-		scaleToFit : Bool /*=true*/,
-		complete : js.JQuery->Void /*=function(){}*/,
-		start : js.JQuery->Void /*=function(){}*/,
-		end : js.JQuery->Void /*=function(){}*/
-	}) : String untyped
+		?mode : String, // "fit", "fill", "noscale"
+		?parentPrecedence : Int, // 0
+		?complete : js.JQuery->Void, // function()
+		?start : js.JQuery->Void, // function()
+		?end : js.JQuery->Void // function()
+	}) : js.JQuery untyped
 	{
 		return jq.imgCenter(params);
 	}
