@@ -14,7 +14,7 @@ class ImgLiquid
 		haxe.macro.Compiler.includeFile("js/jquery/ImgLiquid.js");
 	}
 	
-	public static inline function imgCenter(jq:js.JQuery, ?params : { 
+	public static inline function imgLiquid(jq:js.JQuery, ?params : { 
 		?fill : Bool,
 		?verticalAlign : String,	// 'center' //	'top'	//	'bottom' // '50%'  // '10%' 
 		?horizontalAlign : String,	// 'center' //	'left'	//	'right'  // '50%'  // '10%' 
