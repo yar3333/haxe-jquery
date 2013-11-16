@@ -31,14 +31,14 @@
 
 			if ($img[0].complete)
 			{
-				imgMath($img);
+				processImage($img);
 			}
 			else
 			{
-				$img.load(function(e) { imgMath($img); });
+				$img.load(function(e) { processImage($img); });
 			}
 
-			function imgMath($img)
+			function processImage($img)
 			{
 				$parent.css("overflow","hidden");
 				
@@ -61,23 +61,8 @@
 				}
 				else
 				{
-					if (imgWidth > parWidth)
-					{
-						$img.css({"margin-left":"-"+ Math.round((imgWidth - parWidth) / 2) + "px"});
-					} 
-					else if (imgWidth < parWidth)
-					{
-						$img.css("margin-left", Math.round((parWidth -imgWidth) / 2) + "px");
-					}
-					
-					if (imgHeight > parHeight)
-					{
-						$img.css("margin-top", "-" + Math.round((imgHeight - parHeight) / 2) + "px");
-					}
-					else if (imgHeight < parHeight && opts.centerVertical)
-					{
-						$img.css("margin-top", Math.round((parHeight - imgHeight) / 2) + "px");
-					}
+					$img.css("margin-left", Math.round((parWidth - imgWidth) / 2) + "px");
+					$img.css("margin-top", Math.round((parHeight - imgHeight) / 2) + "px");
 				}
 				
 				opts.complete.call(this);
