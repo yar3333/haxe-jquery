@@ -7,8 +7,11 @@ class MouseWheel
 		haxe.macro.Compiler.includeFile("js/jquery/MouseWheel.js");
 	}
 	
-	public static inline function mousewheel(jq:js.JQuery, callb:Dynamic->Int->Int->Int->Void) : js.JQuery
+	/**
+	 * Callback arguments: event, delta, deltaX, deltaY
+	 */
+	public static inline function mousewheel(jq:js.JQuery, callb:Dynamic->Int->Int->Int->Void) : js.JQuery untyped
 	{
-		return (cast jq).mousewheel(callb);
+		return jq.mousewheel(callb);
 	}
 }
