@@ -14,7 +14,7 @@ class Autoresize
 {
 	static function __init__() : Void
 	{
-		haxe.macro.Compiler.includeFile("js/jquery/Autoresize.js");
+		haxe.macro.Compiler.includeFile("js/jquery/AutoResize.js");
 	}
 	
 	public static function autoResize(jq:js.JQuery, ?params:AutoresizeOptions) : js.JQuery untyped
