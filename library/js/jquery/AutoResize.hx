@@ -17,8 +17,8 @@ class Autoresize
 		haxe.macro.Compiler.includeFile("js/jquery/Autoresize.js");
 	}
 	
-	public static function autoresize(jq:js.JQuery, ?params:AutoresizeOptions) : js.JQuery
+	public static function autoResize(jq:js.JQuery, ?params:AutoresizeOptions) : js.JQuery
 	{
-		return jq.autoreize(params);
+		return jq.autoResize(params);
 	}
 }
