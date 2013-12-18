@@ -356,8 +356,14 @@ extern class JQuery implements ArrayAccess<Element> {
 
 	// JQuery 1.7+
 	@:overload(function(events:Dynamic<JqEvent->Void>):JQuery{})
+	@:overload(function(events:String, selector:String, data:Dynamic, callb:JqEvent->Void):JQuery{})
+	@:overload(function(events:String, selector:String, callb:JqEvent->Void):JQuery{})
 	function on( events : String, callb : JqEvent -> Void ) : JQuery;
-
+	
+	@:overload(function(events:String, selector:String, callb:JqEvent->Void):JQuery{})
+	@:overload(function(events:String):JQuery{})
+	function off( events : String, callb : JqEvent -> Void ) : JQuery;
+	
 	// queue
 	function clearQueue( ?queueName : String ) : JQuery;
 	function dequeue( ?queueName : String ) : JQuery;
