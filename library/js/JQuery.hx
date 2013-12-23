@@ -80,6 +80,42 @@ extern class JQueryHelper {
 
 }
 
+typedef AjaxSettings = {
+	?accepts : Dynamic,
+	?async : Bool,
+	?beforeSend : js.html.XMLHttpRequest->AjaxSettings->Void,
+	?cache : Bool,
+	?complete : js.html.XMLHttpRequest->AjaxSettings->Void,
+	?contents : Dynamic<String>,
+	?contentType : String,
+	?context : Dynamic,
+	?converters : Dynamic<String->Dynamic>,
+	?crossDomain : Bool,
+	?data : Dynamic,
+	?dataFilter : String->String->Dynamic,
+	?dataType : String,
+	?error : js.html.XMLHttpRequest->String->String->Void,
+	?global : Bool,
+	?headers : Dynamic<String>,
+	?ifModified : Bool,
+	?isLocal : Bool,
+	?jsonp : String,
+	?jsonpCallback : Void->Void,
+	?mimeType : String,
+	?password : String,
+	?processData : Bool,
+	?scriptCharset : String, 
+	?statusCode : Dynamic<Void->Void>,
+	?success : Dynamic->String->js.html.XMLHttpRequest->Void,
+	?timeout : Int,
+	?traditional : Bool,
+	?type : String,
+	?url : String,
+	?username : String,
+	?xhr : Void->Dynamic,
+	?xhrFields : Dynamic
+}
+
 @:initPackage
 extern class JQuery implements ArrayAccess<Element> {
 
@@ -375,7 +411,10 @@ extern class JQuery implements ArrayAccess<Element> {
 	}
 	static inline function postAjax( url : String, ?params : Dynamic, ?callb : Dynamic -> Void, ?dataType : String ) : Void {
 		untyped jQuery.post(url, params, callb, dataType);
-	}	
+	}
+	static inline function ajax(?url:String, ?settings:AjaxSettings) : Void {
+		untyped jQuery.ajax(url, settings);
+	}
 
 	// deferred
 	// TODO
