@@ -125,6 +125,10 @@ typedef AutocompleteOptions =
 	 * Type of data returned from server. Either 'text' (default) or 'jsonp', which will cause the autocomplete to use jsonp. You may return a json object in your callback when using jsonp.
 	 */
 	@:optional var dataType : String;
+	
+	@:optional var currentRequest : js.html.XMLHttpRequest;
+    
+	@:optional var triggerSelectOnValidInput : Bool;
 }
 
 typedef AutocompleteInstance =
@@ -133,7 +137,7 @@ typedef AutocompleteInstance =
 	
 	var disabled : Bool;
 	
-	var selectedIndex(default, null) : Int;
+	var selection : AutocompleteSuggestion;
 	
 	/**
 	 * Clears suggestion cache and current suggestions.
