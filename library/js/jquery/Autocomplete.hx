@@ -48,7 +48,7 @@ typedef AutocompleteOptions =
 	/**
 	 * Suggestions container width in pixels, e.g.: 300. Default: auto, takes input field width.
 	 */
-	@:optional var width : Int;
+	@:optional var width : Dynamic;
 	
 	/**
 	 * Additional parameters to pass with the request, optional.
