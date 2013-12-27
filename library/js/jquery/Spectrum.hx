@@ -55,7 +55,7 @@ class Spectrum
 	public static inline function spectrumHide(jq:js.JQuery) : Void untyped jq.spectrum("hide");
 	public static inline function spectrumToggle(jq:js.JQuery) : Void untyped jq.spectrum("toggle");
 	public static inline function spectrumGet(jq:js.JQuery) : TinyColor untyped return jq.spectrum("get");
-	public static inline function spectrumSet(jq:js.JQuery) : Void untyped jq.spectrum("set", colorString);
+	public static inline function spectrumSet(jq:js.JQuery, color:String) : Void untyped jq.spectrum("set", color);
 	public static inline function spectrumContainer(jq:js.JQuery) : Void untyped jq.spectrum("container");
 	public static inline function spectrumReflow(jq:js.JQuery) : Void untyped jq.spectrum("reflow");
 	public static inline function spectrumDestroy(jq:js.JQuery) : Void untyped jq.spectrum("destroy");
