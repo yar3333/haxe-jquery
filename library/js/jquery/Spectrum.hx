@@ -38,7 +38,7 @@ class Spectrum
 		?cancelText : String,
 		?showButtons : Bool,
 		?className : String,
-		?preferredFormat : String, // hex, hex6, hsl, rgb, name, 
+		?preferredFormat : String, // hex, hex6, hsl, rgb, name
 		
 		?change: TinyColor->Void,
 		?move: TinyColor->Void,
