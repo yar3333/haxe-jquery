@@ -40,7 +40,7 @@
 
 			function processImage($img)
 			{
-				$parent.css("overflow","hidden");
+				if (opts.mode != "fit") $parent.css("overflow","hidden");
 				
 				$img.show();
                 
