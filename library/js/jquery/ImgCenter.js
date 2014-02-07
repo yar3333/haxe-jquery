@@ -44,8 +44,8 @@
 				
 				$img.show();
                 
-				var imgWidth = $img.width();
-				var imgHeight = $img.height();
+				var imgWidth = $img[0].width;
+				var imgHeight = $img[0].height;
 				
 				if (opts.mode == "fit" || opts.mode == "fill")
 				{
@@ -53,11 +53,14 @@
 						? Math.min(parWidth / imgWidth, parHeight / imgHeight)
 						: Math.max(parWidth / imgWidth, parHeight / imgHeight);
 					
-					$img.width(Math.round(imgWidth * k));
-					$img.height(Math.round(imgHeight * k));
+					imgWidth = Math.round(imgWidth * k);
+					imgHeight = Math.round(imgHeight * k);
+						
+					$img.width(imgWidth);
+					$img.height(imgHeight);
 					
-					$img.css("margin-left", Math.round((parWidth - $img.width()) / 2) + "px");
-					$img.css("margin-top", Math.round((parHeight - $img.height()) / 2) + "px");
+					$img.css("margin-left", Math.round((parWidth - imgWidth) / 2) + "px");
+					$img.css("margin-top", Math.round((parHeight - imgHeight) / 2) + "px");
 				}
 				else
 				{
