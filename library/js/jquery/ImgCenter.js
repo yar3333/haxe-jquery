@@ -29,7 +29,7 @@
 			var parWidth = parseInt($parent.width());
 			var parHeight = parseInt($parent.height());
 
-			if ($img[0].complete)
+			if ($img[0].complete && $img[0].src != "")
 			{
 				processImage($img);
 			}
