@@ -2,15 +2,15 @@ package js.jquery;
 
 typedef TinyColor =
 {
-	function toHex() : String;   		    			// "ff0000"
-	function toHexString() : String; 					// "#ff0000"
-	function toRgb() : { r:Int, g:Int, b:Int };   		// {"r":255,"g":0,"b":0}
-	function toRgbString() : String;					// "rgb(255, 0, 0)"
-	function toHsv() : { h:Float, s:Float, v:Float };	// {"h":0,"s":1,"v":1}
-	function toHsvString() : String; 					// "hsv(0, 100%, 100%)"
-	function toHsl() : { h:Float, s:Float, l:Float };	// {"h":0,"s":1,"l":0.5}
-	function toHslString() : String;					// "hsl(0, 100%, 50%)"
-	function toName() : String;      					// "red"
+	function toHex() : String;   		    				// "ff0000"
+	function toHexString() : String; 						// "#ff0000"
+	function toRgb() : { r:Int, g:Int, b:Int, a:Float };   	// {"r":255,"g":0,"b":0}
+	function toRgbString() : String;						// "rgb(255, 0, 0)"
+	function toHsv() : { h:Float, s:Float, v:Float };		// {"h":0,"s":1,"v":1}
+	function toHsvString() : String; 						// "hsv(0, 100%, 100%)"
+	function toHsl() : { h:Float, s:Float, l:Float };		// {"h":0,"s":1,"l":0.5}
+	function toHslString() : String;						// "hsl(0, 100%, 50%)"
+	function toName() : String;      						// "red"
 }
 
 typedef SpectrumOptions =
@@ -85,13 +85,13 @@ extern class SpectrumInstance
 	public inline function toggle() : Void spectrum("toggle");
 	public inline function get() : TinyColor return spectrum("get");
 	public inline function set(color:String) : Void spectrum("set", color);
-	public inline function container() : Void spectrum("container");
+	public inline function container() : js.JQuery return spectrum("container");
 	public inline function reflow() : Void spectrum("reflow");
 	public inline function destroy() : Void spectrum("destroy");
 	public inline function enable() : Void spectrum("enable");
 	public inline function disable() : Void spectrum("disable");
 	public inline function getOption(name:String) : Dynamic return spectrum("option", name);
-	public inline function setOption(name:String, value:String) : Void spectrum("option", name, value);	
+	public inline function setOption(name:String, value:Dynamic) : Void spectrum("option", name, value);	
 }
 
 class Spectrum
