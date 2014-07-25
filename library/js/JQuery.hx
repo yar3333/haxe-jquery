@@ -459,6 +459,8 @@ extern class JQuery implements ArrayAccess<Element> {
 	//static function get, post
 	//static function getJSON, getScript, grep
 	//static function is*, makeArray, map, merge, noop, now, param, proxy, sub, trim, type, unique
+	
+	static function makeArray(arrayLike:{ length:Int }) : Array<Dynamic>;
 
 	private static inline function get_cur() : JQuery {
 		return untyped $(__js__("this"));
