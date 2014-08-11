@@ -695,16 +695,18 @@
                     var rgb = realColor.toRgb();
                     rgb.a = 0;
                     var realAlpha = tinycolor(rgb).toRgbString();
-                    var gradient = "linear-gradient(left, " + realAlpha + ", " + realHex + ")";
 
                     if (IE) {
                         alphaSliderInner.css("filter", tinycolor(realAlpha).toFilter({ gradientType: 1 }, realHex));
                     }
                     else {
+						var gradient = "linear-gradient(left, " + realAlpha + ", " + realHex + ")";
+						var gradientTo = "linear-gradient(to right, " + realAlpha + ", " + realHex + ")";
+                        
                         alphaSliderInner.css("background", "-webkit-" + gradient);
                         alphaSliderInner.css("background", "-moz-" + gradient);
                         alphaSliderInner.css("background", "-ms-" + gradient);
-                        alphaSliderInner.css("background", gradient);
+                        alphaSliderInner.css("background", gradientTo);
                     }
                 }
 
