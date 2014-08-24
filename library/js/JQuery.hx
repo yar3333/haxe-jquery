@@ -63,6 +63,13 @@ typedef JqEvent = {
 	function stopPropagation() : Void;
 }
 
+typedef JqXHR =
+{
+	function done(callb:String->String->JqXHR->Void) : JqXHR;
+	function fail(callb:JqXHR->String->Dynamic) : JqXHR;
+	function always(callb:Dynamic->String->Dynamic) : JqXHR;
+}
+
 extern class JQueryHelper {
 	@:overload(function(j:JQuery):JQuery{})
 	@:overload(function(j:DOMWindow):JQuery{})
@@ -412,9 +419,9 @@ extern class JQuery implements ArrayAccess<Element> {
 	static inline function postAjax( url : String, ?params : Dynamic, ?callb : Dynamic -> Void, ?dataType : String ) : Void {
 		untyped jQuery.post(url, params, callb, dataType);
 	}
-	static inline function ajax(?url:String, ?settings:AjaxSettings) : Void {
-		untyped jQuery.ajax(url, settings);
-	}
+	
+	@:overload(function(settings:AjaxSettings):Void{})
+	static function ajax(url:String, ?settings:AjaxSettings) : Void;
 
 	// deferred
 	// TODO
