@@ -339,6 +339,7 @@ extern class JQuery implements ArrayAccess<Element> {
 
 	@:overload(function(?duration:String,?easing:String,?call:Void->Void) : JQuery{})
 	@:overload(function(?duration:Int,?easing:String,?call:Void->Void) : JQuery{})
+	@:overload(function(showOrHide:Bool) : JQuery{})
 	function toggle( ?duration : Int, ?call : Void -> Void ) : JQuery;
 
 	// Events
