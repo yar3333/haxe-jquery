@@ -423,6 +423,8 @@ extern class JQuery implements ArrayAccess<Element> {
 	@:overload(function(settings:AjaxSettings):Void{})
 	static function ajax(url:String, ?settings:AjaxSettings) : Void;
 
+	static function getScript( url : String, ?success : String -> String -> JqXHR -> Void ) : JqXHR;
+	
 	// deferred
 	// TODO
 
