@@ -165,6 +165,7 @@ extern class JQuery implements ArrayAccess<Element> {
 	@:overload(function(value:String):JQuery{})
 	@:overload(function(value:Int):JQuery{})
 	@:overload(function(value:Float):JQuery{})
+	@:overload(function(value:Bool):JQuery{})
 	function val() : String;
 
 	@:overload(function(text:String):JQuery{})
