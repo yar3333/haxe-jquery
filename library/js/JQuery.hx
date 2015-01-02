@@ -136,6 +136,7 @@ extern class JQuery implements ArrayAccess<Element> {
 	@:overload(function(j:Element):Void{})
 	@:overload(function(html:String, j:JQuery):Void{})
 	@:overload(function(html:String, j:Element):Void{})
+	@:overload(function(elements:Array<js.html.Element>):Void{})
 	function new( html : String ) : Void;
 
 	// attributes
@@ -239,18 +240,22 @@ extern class JQuery implements ArrayAccess<Element> {
 	// DOM changes
 	@:overload(function(value:JQuery):JQuery{})
 	@:overload(function(value:Element):JQuery{})
+	@:overload(function(value:Array<Element>):JQuery{})
 	function before( html : String ) : JQuery;
 
 	@:overload(function(value:JQuery):JQuery{})
 	@:overload(function(value:Element):JQuery{})
+	@:overload(function(value:Array<Element>):JQuery{})
 	function after( html : String ) : JQuery;
 
 	@:overload(function(value:JQuery):JQuery{})
 	@:overload(function(value:Element):JQuery{})
+	@:overload(function(value:Array<Element>):JQuery{})
 	function append( html : String ) : JQuery;
 
 	@:overload(function(value:JQuery):JQuery{})
 	@:overload(function(value:Element):JQuery{})
+	@:overload(function(value:Array<Element>):JQuery{})
 	function appendTo( html : String ) : JQuery;
 
 	function detach( ?selector : String ) : JQuery;
@@ -258,25 +263,34 @@ extern class JQuery implements ArrayAccess<Element> {
 
 	@:overload(function(value:JQuery):JQuery{})
 	@:overload(function(value:Element):JQuery{})
+	@:overload(function(value:Array<Element>):JQuery{})
 	function insertBefore( html : String ) : JQuery;
 
 	@:overload(function(value:JQuery):JQuery{})
 	@:overload(function(value:Element):JQuery{})
+	@:overload(function(value:Array<Element>):JQuery{})
 	function insertAfter( html : String ) : JQuery;
 
 	@:overload(function(value:JQuery):JQuery{})
 	@:overload(function(value:Element):JQuery{})
+	@:overload(function(value:Array<Element>):JQuery{})
 	function prepend( html : String ) : JQuery;
 
 	@:overload(function(value:JQuery):JQuery{})
 	@:overload(function(value:Element):JQuery{})
+	@:overload(function(value:Array<Element>):JQuery{})
 	function prependTo( html : String ) : JQuery;
 
 	function remove( ?selector : String ) : JQuery;
+	
+	@:overload(function(value:JQuery):JQuery{})
+	@:overload(function(value:Element):JQuery{})
+	@:overload(function(value:Array<Element>):JQuery{})
 	function replaceAll( selector : String ) : JQuery;
 
 	@:overload(function(value:JQuery):JQuery{})
 	@:overload(function(value:Element):JQuery{})
+	@:overload(function(value:Array<Element>):JQuery{})
 	function replaceWith( html : String ) : JQuery;
 
 	function unwrap() : JQuery;
@@ -470,7 +484,7 @@ extern class JQuery implements ArrayAccess<Element> {
 	//static function getJSON, getScript, grep
 	//static function is*, makeArray, map, merge, noop, now, param, proxy, sub, trim, type, unique
 	
-	static function makeArray(arrayLike:{ length:Int }) : Array<Dynamic>;
+	static function makeArray(arrayLike:{ var length(default, null):Int; }) : Array<js.html.Element>;
 
 	private static inline function get_cur() : JQuery {
 		return untyped $(__js__("this"));
