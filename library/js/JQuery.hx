@@ -427,8 +427,10 @@ extern class JQuery implements ArrayAccess<Element> {
 	// queue
 	function clearQueue( ?queueName : String ) : JQuery;
 	function dequeue( ?queueName : String ) : JQuery;
-	function queue( ?queueName : String, ?callb : (Void -> Void) -> Void ) : { length : Int };
-
+	
+	@:overload(function(callb : (Void -> Void) -> Void):JQuery{})
+	function queue(queueName : String, ?callb : (Void -> Void) -> Void ) : JQuery;
+	
 	// ajax
 	static inline function getAjax( url : String, ?params : Dynamic, ?callb : Dynamic -> Void, ?dataType : String ) : Void {
 		untyped jQuery.get(url, params, callb, dataType);
