@@ -132,7 +132,7 @@ extern class JQuery implements ArrayAccess<Element> {
 	@:overload(function():Void{})
 	@:overload(function(j:JQuery):Void{})
 	@:overload(function(j:DOMWindow):Void{})
-	@:overload(function(j:Document):JQuery{})
+	@:overload(function(j:Document):Void{})
 	@:overload(function(j:Element):Void{})
 	@:overload(function(html:String, j:JQuery):Void{})
 	@:overload(function(html:String, j:Element):Void{})
