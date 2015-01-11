@@ -351,6 +351,7 @@ extern class JQuery implements ArrayAccess<Element> {
 	function slideUp( ?duration : Int, ?call : Void -> Void ) : JQuery;
 
 	function stop( ?clearQueue : Bool, ?jumpToEnd : Bool ) : JQuery;
+	function finish() : JQuery;
 
 	@:overload(function(?duration:String,?easing:String,?call:Void->Void) : JQuery{})
 	@:overload(function(?duration:Int,?easing:String,?call:Void->Void) : JQuery{})
