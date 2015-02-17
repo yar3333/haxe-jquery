@@ -443,7 +443,7 @@ extern class JQuery implements ArrayAccess<Element> {
 	static function ajax(url:String, ?settings:AjaxSettings) : Void;
 
 	static function getScript( url : String, ?success : String -> String -> JqXHR -> Void ) : JqXHR;
-	static function getJSON( url : String, ?success : String -> String -> JqXHR -> Void ) : JqXHR;
+	static function getJSON( url : String, ?success : Dynamic -> String -> JqXHR -> Void ) : JqXHR;
 	
 	// deferred
 	// TODO
