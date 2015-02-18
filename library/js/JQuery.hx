@@ -214,6 +214,7 @@ extern class JQuery implements ArrayAccess<Element> {
 	function each( f : Void -> Void ) : JQuery;
 	function end() : JQuery;
 	function eq( index : Int ) : JQuery;
+	@:overload(function( f : Int -> Element -> Bool ):JQuery{})
 	function filter( selector : String ) : JQuery;
 	function find( selector : String ) : JQuery;
 	function first() : JQuery;
