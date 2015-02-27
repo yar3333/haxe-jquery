@@ -26,6 +26,8 @@ import js.html.Document;
 import js.html.Element;
 
 typedef JqEvent = {
+	var originalEvent : Dynamic;
+	
 	var target : Element;
 	var currentTarget : Element;
 	var relatedTarget : Element;
