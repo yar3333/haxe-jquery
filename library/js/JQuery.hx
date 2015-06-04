@@ -230,7 +230,9 @@ extern class JQuery implements ArrayAccess<Element> {
 	function parent( ?selector : String ) : JQuery;
 	function parents( ?selector : String ) : JQuery;
 	function parentsUntil( ?selector : String ) : JQuery;
+	@:overload(function(value:JQuery):JQuery{})
 	@:overload(function(value:Element):JQuery{})
+	@:overload(function(value:Array<Element>):JQuery{})
 	function not( selector : String ) : JQuery;
 	function prev( ?selector : String ) : JQuery;
 	function prevAll( ?selector : String ) : JQuery;
