@@ -67,8 +67,9 @@ typedef UploadItem =
 	function readAs(format:String, callb:Dynamic->Void) : Void;
 }
 
-//typedef DawnUploader =
-
+/**
+ * jQuery events: du.add, du.limit, du.completed.
+ */
 extern class DamnUploader
 {
 	static function __init__() : Void
