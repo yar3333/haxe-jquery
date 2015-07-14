@@ -21,9 +21,9 @@
  */
 package js;
 
-import js.html.DOMWindow;
-import js.html.Document;
+import js.html.Window;
 import js.html.Element;
+import js.html.Document;
 
 typedef JqEvent = {
 	var originalEvent : Dynamic;
@@ -74,17 +74,18 @@ typedef JqXHR =
 
 extern class JQueryHelper {
 	@:overload(function(j:JQuery):JQuery{})
-	@:overload(function(j:DOMWindow):JQuery{})
+	@:overload(function(j:Window):JQuery{})
+	@:overload(function(j:Element):JQuery { } )
 	@:overload(function(j:Document):JQuery{})
-	@:overload(function(j:Element):JQuery{})
-	public static inline function J( html : String ) : JQuery {
-		return new JQuery(html);
-	}
-	
+
+	public static inline function J( html : haxe.extern.EitherType<String,haxe.extern.EitherType<JQuery,haxe.extern.EitherType<Window,Element>>> ) : JQuery {
+        return new JQuery(cast html);
+    }	
+
 	public static var JTHIS(get, null) : JQuery;
 
 	static inline function get_JTHIS() : JQuery {
-		return untyped __js__("$(this)");
+		return new JQuery(js.Lib.nativeThis);
 	}
 
 }
@@ -131,11 +132,12 @@ extern class JQuery implements ArrayAccess<Element> {
 	var context(default,null) : Element;
 	var length(default, null) : Int;
 
-	@:overload(function():Void{})
+	@:selfCall
 	@:overload(function(j:JQuery):Void{})
-	@:overload(function(j:DOMWindow):Void{})
-	@:overload(function(j:Document):Void{})
+	@:overload(function(j:Window):Void{})
 	@:overload(function(j:Element):Void{})
+	@:overload(function():Void{})
+	@:overload(function(j:Document):Void{})
 	@:overload(function(html:String, j:JQuery):Void{})
 	@:overload(function(html:String, j:Element):Void{})
 	@:overload(function(html:String, attrs:Dynamic):Void{})
@@ -360,7 +362,7 @@ extern class JQuery implements ArrayAccess<Element> {
 
 	@:overload(function(?duration:String,?easing:String,?call:Void->Void) : JQuery{})
 	@:overload(function(?duration:Int,?easing:String,?call:Void->Void) : JQuery{})
-	@:overload(function(showOrHide:Bool) : JQuery{})
+	@:overload(function(show:Bool) : JQuery{})
 	function toggle( ?duration : Int, ?call : Void -> Void ) : JQuery;
 
 	// Events
@@ -422,6 +424,7 @@ extern class JQuery implements ArrayAccess<Element> {
 	// JQuery 1.7+
 	@:overload(function(events:String, selector:String, data:Dynamic, callb:JqEvent->Void):JQuery{})
 	@:overload(function(events:String, selector:String, callb:JqEvent->Void):JQuery{})
+	@:overload(function(events:Dynamic<JqEvent->Void>):JQuery{})
 	function on( events : String, callb : JqEvent -> Void ) : JQuery;
 	
 	@:overload(function(events:String, selector:String, callb:JqEvent->Void):JQuery{})
@@ -497,7 +500,7 @@ extern class JQuery implements ArrayAccess<Element> {
 	static function makeArray(arrayLike:{ var length(default, null):Int; }) : Array<js.html.Element>;
 
 	private static inline function get_cur() : JQuery {
-		return untyped $(__js__("this"));
+		return new js.JQuery(js.Lib.nativeThis);
 	}
 
 	private static function __init__() : Void untyped {
@@ -506,6 +509,7 @@ extern class JQuery implements ArrayAccess<Element> {
 			haxe.macro.Compiler.includeFile("js/jquery-latest.min.js");
 		#end
 		var q : Dynamic = (untyped js.Browser.window).jQuery;
+		untyped __js__("var js = js || {}");
 		js.JQuery = q;
 		__feature__('js.JQuery.iterator',
 			q.fn.iterator = function() return { pos : 0, j : __this__, hasNext : function() return __this__.pos < __this__.j.length, next : function() return $(__this__.j[__this__.pos++]) }
