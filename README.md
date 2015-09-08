@@ -17,7 +17,7 @@ Also, this project collect externs for jQuery plugins.
  * Sortable
  * Widget
 
-### Externs for unofficial plugins ###
+### Externs for third-party plugins ###
 
  * AnimateColors - http://www.bitstorm.org/jquery/color-animation/
  * Autocomplete - https://github.com/devbridge/jQuery-Autocomplete
@@ -27,6 +27,7 @@ Also, this project collect externs for jQuery plugins.
  * ImgCenter - https://github.com/drewwilson/ImgCenter
  * ImgLiquid - https://github.com/karacas/imgLiquid
  * ImgPreload - https://github.com/farinspace/jquery.imgpreload
+ * Jeditable - http://www.appelsiini.net/projects/jeditable
  * Layout - great for web app (http://layout.jquery-dev.com/)
  * MouseWheel - https://github.com/jquery/jquery-mousewheel
  * NumberFormat - https://github.com/customd/jquery-number
