@@ -58,6 +58,10 @@ class Editable
 	
 	public static function beginEdit(jq:JQuery, params:Params)
 	{
+		if (jq.data("editing")) return;
+		
+		jq.data("editing", true);
+		
 		var input = new JQuery("<input type='text' value='" + params.getData(jq) + "' class='" + params.cssClass + "' />");
 		
 		params.beginEdit(jq, input);
@@ -85,6 +89,8 @@ class Editable
 	
 	static function endEdit(input:JQuery, jq:JQuery, params:Params, success:Bool)
 	{
+		jq.data("editing", false);
+		
 		var value = input.val();
 		input.remove();
 		params.endEdit(jq);
