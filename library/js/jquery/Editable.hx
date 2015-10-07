@@ -6,7 +6,7 @@ import nanofl.ide.keyboard.Keys;
 
 typedef Params =
 {
-	@:optional var clicked : JQuery->Bool;
+	@:optional var enabled : JQuery->Bool;
 	@:optional var getData : JQuery->String;
 	@:optional var setData : JQuery->String->Void;
 	@:optional var delay : Int;
@@ -26,7 +26,7 @@ class Editable
 		
 		jq.click(function(_)
 		{
-			if (params.clicked(jq))
+			if (params.enabled(jq))
 			{
 				if (timer != null) timer.stop();
 				timer = Timer.delay(beginEdit.bind(jq, params), params.delay);
@@ -44,7 +44,7 @@ class Editable
 	{
 		if (params == null) params = { };
 		
-		if (params.clicked		== null) params.clicked = function(jq) return true;
+		if (params.enabled		== null) params.enabled = function(jq) return true;
 		if (params.getData		== null) params.getData = function(jq) return jq.html();
 		if (params.setData		== null) params.setData = function(jq, value) jq.html(value);
 		if (params.delay		== null) params.delay = 600;
