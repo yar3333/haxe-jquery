@@ -2,7 +2,6 @@ package js.jquery;
 
 import haxe.Timer;
 import js.JQuery;
-import nanofl.ide.keyboard.Keys;
 
 typedef Params =
 {
@@ -69,12 +68,12 @@ class Editable
 		input
 			.keypress(function(e)
 			{
-				if (e.keyCode == Keys.ENTER)
+				if (e.keyCode == 13) // ENTER
 				{
 					endEdit(input, jq, params, true);
 				}
 				else
-				if (e.keyCode == Keys.ESCAPE)
+				if (e.keyCode == 27) // ESCAPE
 				{
 					endEdit(input, jq, params, false);
 				}
