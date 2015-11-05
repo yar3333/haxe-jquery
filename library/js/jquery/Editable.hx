@@ -28,8 +28,8 @@ class Editable
 			if (params.enabled(jq))
 			{
 				if (timer != null) timer.stop();
-				timer = Timer.delay(beginEdit.bind(jq, params), params.delay);
-				jq.one("mousemove", function(_) timer.stop());
+				timer = Timer.delay(beginEditInner.bind(jq, params), params.delay);
+				new JQuery(js.Browser.document).one("mousemove", function(_) timer.stop());
 			}
 		});
 		
@@ -37,6 +37,8 @@ class Editable
 		{
 			if (timer != null) timer.stop();
 		});
+		
+		jq.on("editable.beginedit", function(_) beginEditInner(jq, params));
 	}
 	
 	static function fixParams(params:Dynamic) : Dynamic
@@ -55,7 +57,13 @@ class Editable
 		return params;
 	}
 	
-	public static function beginEdit(jq:JQuery, params:Params)
+	public static function beginEdit(jq:JQuery, ?params:Params)
+	{
+		if (params == null) jq.triggerHandler("editable.beginedit");
+		else                beginEditInner(jq, params);
+	}
+	
+	static function beginEditInner(jq:JQuery, params:Params)
 	{
 		if (jq.data("editing")) return;
 		
