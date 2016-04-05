@@ -32,5 +32,6 @@ Also, this project collect externs for jQuery plugins.
  * MouseWheel - https://github.com/jquery/jquery-mousewheel
  * NumberFormat - https://github.com/customd/jquery-number
  * ScrollPane - http://jscrollpane.kelvinluck.com/
+ * Selection - http://madapaja.github.io/jquery.selection/
  * Spectrum - great color selector (https://bgrins.github.io/spectrum/)
  * TouchEvents - https://github.com/hammerjs/hammer.js
