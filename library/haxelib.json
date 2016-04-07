@@ -4,8 +4,8 @@
   "tags": ["html","js","extern"],
   "description": "Fixed version of the haxe's jQuery class and some plugins.",
   "contributors": ["yar3333"],
-  "releasenote": "Editable: you can call beginEdit() for previously initiated node.",
-  "version": "1.4.1",
+  "releasenote": "Add Selection plugin.",
+  "version": "1.5.0",
   "url": "https://bitbucket.org/yar3333/haxe-jquery",
   "dependencies": {}
 }
