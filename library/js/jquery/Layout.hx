@@ -85,7 +85,9 @@ typedef LayoutPaneOptions =
 	@:optional var onclose_start : String->js.JQuery->LayoutPaneState->LayoutPaneOptions->String->Bool;
 	@:optional var onclose_end : String->js.JQuery->LayoutPaneState->LayoutPaneOptions->String->Void;
 	@:optional var onresize_start : String->js.JQuery->LayoutPaneState->LayoutPaneOptions->String->Bool;
-	@:optional var onresize_end : String->js.JQuery->LayoutPaneState->LayoutPaneOptions->String->Void;
+	@:optional var onresize_end : String->js.JQuery->LayoutPaneState-> LayoutPaneOptions->String->Void;
+	
+	@:optional var maskContents : Bool;
 }
 
 typedef LayoutPaneState =
