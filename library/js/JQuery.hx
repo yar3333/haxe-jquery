@@ -315,6 +315,8 @@ extern class JQuery implements ArrayAccess<Element> {
 	@:overload(function(value:Element):JQuery{})
 	function wrapInner( html : String ) : JQuery;
 
+	function addBack( ?selector : String ) : JQuery;
+
 	// animation
 	@:overload(function(properties:{},?duration:Int,?easing:String,?call:Void->Void) : JQuery{})
 	function animate( properties : { }, ?duration : Int, ?callb : Void -> Void ) : JQuery;
