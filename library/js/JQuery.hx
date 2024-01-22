@@ -72,13 +72,9 @@ typedef JqXHR =
 	function always(callb:Dynamic->String->Dynamic) : JqXHR;
 }
 
-extern class JQueryHelper {
-	@:overload(function(j:JQuery):JQuery{})
-	@:overload(function(j:Window):JQuery{})
-	@:overload(function(j:Element):JQuery { } )
-	@:overload(function(j:Document):JQuery{})
-
-	public static inline function J( html : haxe.extern.EitherType<String,haxe.extern.EitherType<JQuery,haxe.extern.EitherType<Window,Element>>> ) : JQuery {
+extern class JQueryHelper
+{
+	public static inline function J( html : haxe.extern.EitherType<String,haxe.extern.EitherType<JQuery,haxe.extern.EitherType<Window,haxe.extern.EitherType<Document,Element>>>> ) : JQuery {
         return new JQuery(cast html);
     }	
 
@@ -87,7 +83,6 @@ extern class JQueryHelper {
 	static inline function get_JTHIS() : JQuery {
 		return new JQuery(js.Lib.nativeThis);
 	}
-
 }
 
 typedef AjaxSettings = {
@@ -507,11 +502,11 @@ extern class JQuery implements ArrayAccess<Element> {
 
 	private static function __init__() : Void untyped {
 		#if embed_js
-		if( untyped __js__("typeof($) == 'undefined'") )
+		if( js.Syntax.code("typeof($) == 'undefined'") )
 			haxe.macro.Compiler.includeFile("js/jquery-latest.min.js");
 		#end
 		var q : Dynamic = (untyped js.Browser.window).jQuery;
-		untyped __js__("var js = js || {}");
+		js.Syntax.code("var js = js || {}");
 		js.JQuery = q;
 		__feature__('js.JQuery.iterator',
 			q.fn.iterator = function() return { pos : 0, j : __this__, hasNext : function() return __this__.pos < __this__.j.length, next : function() return $(__this__.j[__this__.pos++]) }
