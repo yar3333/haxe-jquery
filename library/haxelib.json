@@ -2,7 +2,7 @@
   "name": "jquery",
   "license": "LGPL",
   "tags": ["html","js","extern"],
-  "description": "Fixed version of the haxe's jQuery class and some plugins.",
+  "description": "jQuery externs with core and third-party plugins.",
   "contributors": ["yar3333"],
   "releasenote": "haxe-4",
   "version": "1.5.3",

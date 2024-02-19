@@ -1,10 +1,7 @@
-# Haxe externs for jQuery #
+# Haxe externs for jQuery 1.x #
 
-This project is the reaction to the slow development of the official Haxe library.
-
-So this is a copy of the official file with some improvements (more overloads, more methods, minor bugfixes and so on).
-
-Also, this project collect externs for jQuery plugins.
+Also, this project contains externs for jQuery plugins.
+Third-party plugins are embed related js (no need manual code to load *.js).
 
 ### Externs for the official jQuery UI ###
 
@@ -35,3 +32,10 @@ Also, this project collect externs for jQuery plugins.
  * Selection - http://madapaja.github.io/jquery.selection/
  * Spectrum - great color selector (https://bgrins.github.io/spectrum/)
  * TouchEvents - https://github.com/hammerjs/hammer.js
+
+
+### Using ###
+
+You must add <script> to load jQuery library to your HTML before haxe code.
+In haxe just `import js.JQuery` and use JQuery object.
+See `test` in repo for plugin using example.

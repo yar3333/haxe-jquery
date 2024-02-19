@@ -121,9 +121,9 @@ typedef AjaxSettings = {
 	?xhrFields : Dynamic
 }
 
-@:initPackage
-extern class JQuery implements ArrayAccess<Element> {
-
+@:native("jQuery")
+extern class JQuery implements ArrayAccess<Element>
+{
 	var context(default,null) : Element;
 	var length(default, null) : Int;
 
@@ -466,13 +466,10 @@ extern class JQuery implements ArrayAccess<Element> {
 	function removeData( ?key : String ) : JQuery;
 	function serialize() : String;
 	function serializeArray() : Array<{ name : String, value : String }>;
-	//inline function map<T>( f : JQuery -> T ) : Array<T> {
-	//	return untyped this["map"](function() return f(cur)).get();
-	//}
 
 	// Haxe addition
-	@:runtime inline function iterator() : Iterator<JQuery> {
-		return untyped __define_feature__('js.JQuery.iterator', this["iterator"])();
+	inline function iterator() : Iterator<JQuery> {
+	    return untyped __define_feature__('JQuery.iterator', this["iterator"])();
 	}
 
 	/**
@@ -496,19 +493,15 @@ extern class JQuery implements ArrayAccess<Element> {
 	
 	static function makeArray(arrayLike:{ var length(default, null):Int; }) : Array<js.html.Element>;
 
-	private static inline function get_cur() : JQuery {
+	private static inline function get_cur() : JQuery
+    {
 		return new js.JQuery(js.Lib.nativeThis);
 	}
 
-	private static function __init__() : Void untyped {
-		#if embed_js
-		if( js.Syntax.code("typeof($) == 'undefined'") )
-			haxe.macro.Compiler.includeFile("js/jquery-latest.min.js");
-		#end
+	private static function __init__() : Void untyped
+    {
 		var q : Dynamic = (untyped js.Browser.window).jQuery;
-		js.Syntax.code("var js = js || {}");
-		js.JQuery = q;
-		__feature__('js.JQuery.iterator',
+		__feature__('JQuery.iterator',
 			q.fn.iterator = function() return { pos : 0, j : __this__, hasNext : function() return __this__.pos < __this__.j.length, next : function() return $(__this__.j[__this__.pos++]) }
 		);
 	}
