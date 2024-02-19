@@ -468,7 +468,7 @@ extern class JQuery implements ArrayAccess<Element>
 	function serializeArray() : Array<{ name : String, value : String }>;
 
 	// Haxe addition
-	inline function iterator() : Iterator<JQuery> {
+	@:runtime inline function iterator() : Iterator<JQuery> {
 	    return untyped __define_feature__('JQuery.iterator', this["iterator"])();
 	}
 
