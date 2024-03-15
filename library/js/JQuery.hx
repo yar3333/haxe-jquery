@@ -53,6 +53,7 @@ typedef JqEvent = {
 	var ctrlKey : Bool;
 	var altKey : Bool;
 	var metaKey : Bool;
+	var key : String;
 
 	var which : Int;
 
