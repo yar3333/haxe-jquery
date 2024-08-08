@@ -23,36 +23,35 @@ class Editable
 		
 		var timer : Timer = null;
 		
-		jq.click(function(_)
+		jq.click(_ ->
 		{
-			if (params.enabled(jq))
-			{
-				if (timer != null) timer.stop();
-				timer = Timer.delay(beginEditInner.bind(jq, params), params.delay);
-				new JQuery(js.Browser.document).one("mousemove", function(_) timer.stop());
-			}
+			if (!params.enabled(jq)) return;
+			
+            if (timer != null) timer.stop();
+            timer = Timer.delay(beginEditInner.bind(jq, params), params.delay);
+            new JQuery(js.Browser.document).one("mousemove", _ -> timer.stop());
 		});
 		
-		jq.dblclick(function(_)
+		jq.dblclick(_ ->
 		{
 			if (timer != null) timer.stop();
 		});
 		
-		jq.on("editable.beginedit", function(_) beginEditInner(jq, params));
+		jq.on("editable.beginedit", _ -> beginEditInner(jq, params));
 	}
 	
 	static function fixParams(params:Dynamic) : Dynamic
 	{
 		if (params == null) params = { };
 		
-		if (params.enabled		== null) params.enabled = function(jq) return true;
-		if (params.getData		== null) params.getData = function(jq) return jq.html();
-		if (params.setData		== null) params.setData = function(jq, value) jq.html(value);
-		if (params.delay		== null) params.delay = 600;
-		if (params.cssClass		== null) params.cssClass = "";
-		if (params.blurIsSuccess== null) params.blurIsSuccess = true;
-		if (params.beginEdit	== null) params.beginEdit = function(jq, input) { jq.hide(); input.insertBefore(jq); };
-		if (params.endEdit		== null) params.endEdit   = function(jq)        { jq.show(); }
+		if (params.enabled		 == null) params.enabled = function(jq) return true;
+		if (params.getData		 == null) params.getData = function(jq) return jq.html();
+		if (params.setData		 == null) params.setData = function(jq, value) jq.html(value);
+		if (params.delay		 == null) params.delay = 600;
+		if (params.cssClass		 == null) params.cssClass = "";
+		if (params.blurIsSuccess == null) params.blurIsSuccess = true;
+		if (params.beginEdit	 == null) params.beginEdit = function(jq, input) { jq.hide(); input.insertBefore(jq); };
+		if (params.endEdit		 == null) params.endEdit   = function(jq)        { jq.show(); }
 		
 		return params;
 	}
@@ -69,24 +68,32 @@ class Editable
 		
 		jq.data("editing", true);
 		
-		var input = new JQuery("<input type='text' value='" + params.getData(jq) + "' class='" + params.cssClass + "' />");
+		final input = new JQuery("<input type='text' value='" + params.getData(jq) + "' class='" + params.cssClass + "' />");
 		
 		params.beginEdit(jq, input);
 		
 		input
-			.keypress(function(e)
+            // .keydown(e ->
+            // {
+            //     trace("input.keydown " + e.keyCode);
+            // })
+            .keyup(e ->
+            {
+                //trace("input.keyup " + e.keyCode);
+                if (e.keyCode == 27) // ESCAPE
+                {
+                    endEdit(input, jq, params, false);
+                }
+            })
+			.keypress(e ->
 			{
+                //trace("input.keypress " + e.keyCode);
 				if (e.keyCode == 13) // ENTER
 				{
 					endEdit(input, jq, params, true);
 				}
-				else
-				if (e.keyCode == 27) // ESCAPE
-				{
-					endEdit(input, jq, params, false);
-				}
 			})
-			.blur(function(e)
+			.blur(e ->
 			{
 				endEdit(input, jq, params, params.blurIsSuccess);
 			});
@@ -98,7 +105,7 @@ class Editable
 	{
 		jq.data("editing", false);
 		
-		var value = input.val();
+		final value = input.val();
 		input.remove();
 		params.endEdit(jq);
 		if (success) params.setData(jq, value);
